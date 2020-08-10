@@ -31,7 +31,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/sessions' do
-    binding.pry
     @user = User.find_by(email: params[:email], password: params[:password])
     if @user
       session[:user_id] = @user.id
@@ -47,7 +46,6 @@ class ApplicationController < Sinatra::Base
 
   get '/users/home' do
     @user = User.find(session[:user_id])
-    binding.pry
     erb :'/users/home'
   end
 end
