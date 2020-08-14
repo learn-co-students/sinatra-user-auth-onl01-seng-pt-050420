@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/home' do
-    @user = User.new
+    @user = User.find(session[:user_id])
     erb :"/users/home"
   end
 
@@ -35,7 +35,7 @@ class ApplicationController < Sinatra::Base
     erb :'sessions/login'
   end
 
-  post '/sessions' do
+  post '/sessions' do # Used to Log IN - Finding Existing User
     @user = User.find_by(email: params[:email], password: params[:password])
     if @user
       session[:user_id] = @user.id
