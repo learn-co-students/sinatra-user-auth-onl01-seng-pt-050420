@@ -11,6 +11,11 @@ class ApplicationController < Sinatra::Base
     erb :home
   end
 
+  get '/users/home' do
+    @user = User.new
+    erb :"/users/home"
+  end
+
   get '/registrations/signup' do
 
     erb :'/registrations/signup'
